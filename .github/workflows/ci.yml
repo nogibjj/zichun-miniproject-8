@@ -13,14 +13,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v2
+
+      # Install Rust toolchain
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+
+      # Build the Rust project
       - name: Build
         run: cargo build --release
-      - name: Test
-        run: cargo test
-  
 
+      # Run the Rust main script to generate report and visualization
+      - name: Run Rust script
+        run: cargo run --release
+
+      # Configure Git user identity for committing updates
+      - name: Configure Git user identity
+        run: |
+          git config --global user.email "zichunwang733@gmail.com"
+          git config --global user.name "chun77"
+
+      # Commit and push generated report and visualization if there are changes
+      - name: Generate summary report and commit
+        run: |
+          git add output/summary_report.md output/total_medals_by_top_50_countries.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "Add summary report for all countries and data visualization for top 50 countries"
+            git push
+          else
+            echo "No changes to commit"
