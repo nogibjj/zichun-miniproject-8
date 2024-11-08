@@ -1,2 +1,5 @@
 target/
 output/
+
+!/output/summary_report.md
+!/output/total_medals_by_top_50_countries.svg

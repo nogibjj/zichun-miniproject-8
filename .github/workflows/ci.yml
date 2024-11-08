@@ -39,7 +39,7 @@ jobs:
       # Commit and push generated report and visualization if there are changes
       - name: Generate summary report and commit
         run: |
-          git add output/summary_report.md output/total_medals_by_top_50_countries.svg
+          git add -f output/summary_report.md output/total_medals_by_top_50_countries.svg
           if ! git diff --cached --quiet; then
             git commit -m "Add summary report for all countries and data visualization for top 50 countries"
             git push
