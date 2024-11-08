@@ -1,0 +1,9 @@
+[package]
+name = "zichun-miniproject-8"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+polars = { version = "0.23.0", features = ["lazy"] }
+plotters = "0.3.1"
+plotters-svg = "0.3.1"
