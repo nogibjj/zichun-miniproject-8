@@ -1,82 +1,84 @@
 
-# Data Processing Script Conversion: Python to Rust
+# Rust Data Processing Script - Rewritten from Python
 
 ## Project Overview
-This project involves rewriting a Python data processing script in Rust to compare performance, particularly speed and resource usage. The project evaluates the efficiency gains Rust offers over Python in processing the same dataset.
 
-### Original Python Code
-The original Python script is located [here](https://github.com/nogibjj/zichun-miniproject-2), which uses Pandas for data manipulation.
+This project is a Rust rewrite of an existing Python data processing script in [zichun-miniproject-2](https://github.com/nogibjj/zichun-miniproject-2). The goal was to replicate the functionality of the Python script in Rust while improving speed and resource usage.
 
-### Converted Rust Code
-The Rust version implements similar data processing logic, aiming to demonstrate improvements in execution time and memory efficiency.
+### Original Python Script (zichun-miniproject-2)
 
-## Project Structure
-```
-├── src
-│   ├── main.rs              # Main Rust code implementing data processing
-│   └── lib.rs               # Optional modular code for Rust functions
-├── python_script.py         # Original Python code for data processing
-├── performance_report.md    # Performance comparison between Python and Rust
-├── README.md                # Project documentation
-└── .github/workflows        # CI/CD setup for GitHub Actions
-    └── ci.yml               # CI configuration file
-```
+The Python script performs the following tasks:
+- Loads a CSV dataset.
+- Calculates summary statistics for a specific column.
+- Generates a bar chart for visualization.
+- Saves a report and image output.
 
-## Getting Started
+### Rewritten Rust Script (zichun-miniproject-8)
 
-### Prerequisites
-- [Rust](https://www.rust-lang.org/tools/install) (version 1.60 or later)
-- Python 3.x with required libraries (`pandas`)
-- [Cargo](https://doc.rust-lang.org/cargo/) (Rust’s package manager)
-- Dataset (default: `data/titanic.csv`)
+The Rust script mirrors the Python script's functionality with improvements in performance. Rust’s memory management and compiled nature make it faster and more efficient for processing data compared to Python.
 
-### Setup Instructions
+### Key Improvements
 
-1. **Clone the Repository**:
-   ```bash
-   git clone <repository_url>
-   cd repository_name
-   ```
-
-2. **Install Dependencies**:
-   - For Python:
-     ```bash
-     pip install -r requirements.txt
-     ```
-   - For Rust (add any dependencies if specified in `Cargo.toml`):
-     ```bash
-     cargo build
-     ```
-
-3. **Run the Scripts**:
-   - **Python Script**:
-     ```bash
-     python python_script.py
-     ```
-   - **Rust Script**:
-     ```bash
-     cargo run --release
-     ```
-
-### CI/CD Pipeline
-The project includes a CI/CD pipeline using GitHub Actions, configured to:
-- Run tests on Rust code (`cargo test`)
-- Check formatting, linting, and build errors
-- Verify successful execution for both Python and Rust scripts across multiple Python versions
+- **Speed**: The Rust version processes data faster due to optimized compilation and memory handling.
+- **Resource Usage**: Rust's strict memory management reduces the memory overhead, making it more efficient for large data sets.
 
 ## Performance Comparison
-The [performance comparison report](performance_report.md) documents:
-- **Execution Time**: The time taken by both Python and Rust scripts
-- **Memory Usage**: RAM usage for each script
-- **Efficiency Gains**: Highlighting areas where Rust improves performance
 
-## Results Summary
-| Language | Execution Time | Memory Usage | Notes                 |
-|----------|----------------|--------------|-----------------------|
-| Python   | [x] sec        | [x] MB       | Uses Pandas library   |
-| Rust     | [x] sec        | [x] MB       | Uses Polars or native functions for processing |
-
+| Metric               | Python Script       | Rust Script       | Improvement       |
+|----------------------|---------------------|-------------------|-------------------|
+| **User Time**        | 1.70s              | 0.08s            | 21.25x faster     |
+| **System Time**      | 1.56s              | 0.07s            | 22.29x faster     |
+| **Total Time**       | 0.837s             | 1.331s           | Python faster (1.6x) |
+ 
 ## Deliverables
-- **Rust and Python Scripts**: Located in `src/main.rs` and `python_script.py`
-- **Performance Comparison Report**: See `performance_report.md` for detailed analysis
-- **CI/CD Setup**: GitHub Actions configuration in `.github/workflows/ci.yml`
+
+- **Rust and Python Scripts**: Both the rewritten Rust script (in this repository) and the original Python script (in `zichun-miniproject-2`).
+- **Output Files**:
+  - **Summary Report** (`output/summary_report.md`): Contains summary statistics for the dataset.
+  - **Visualization Image** (`output/total_medals_by_top_50_countries.svg`): A bar chart visualization generated from the dataset.
+
+## Repository Structure
+
+```
+zichun-miniproject-8/
+├── src/
+│   └── main.rs                    # Main Rust script
+├── output/
+│   ├── summary_report.md          # Generated summary report
+│   └── total_medals_by_top_50_countries.svg  # Generated bar chart visualization
+├── .github/workflows/
+│   └── ci.yml                     # GitHub Actions CI/CD pipeline
+├── README.md                      # Project documentation (this file)
+├── Cargo.toml                     # Rust dependencies and configuration
+```
+
+## Setup and Usage
+
+### Requirements
+
+- **Rust**: Install Rust from [rust-lang.org](https://www.rust-lang.org/).
+
+### Running the Rust Script
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nogibjj/zichun-miniproject-8.git
+   cd zichun-miniproject-8
+   ```
+
+2. Build the project:
+   ```bash
+   cargo build --release
+   ```
+
+3. Run the Rust script to generate outputs:
+   ```bash
+   cargo run --release
+   ```
+
+## CI/CD Pipeline
+
+The GitHub Actions CI/CD pipeline performs the following tasks:
+1. Builds the Rust project.
+2. Runs the main Rust script to generate outputs.
+3. Commits the generated files (`summary_report.md` and `total_medals_by_top_50_countries.svg`) if there are updates.
